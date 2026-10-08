@@ -5,4 +5,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://astrology-calculator-ebon.vercel.app/sitemap.xml

@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 const assert = require('assert');
 const fs = require('fs');
@@ -14,13 +14,13 @@ const PAGES = [
   {
     name: 'index.html',
     title: 'Astrology Calculators - Big Three, Compatibility, Calendar',
-    canonical: 'https://example.com/',
+    canonical: 'https://astrology-calculator-ebon.vercel.app/',
     scripts: []
   },
   {
     name: 'tools/big-three/index.html',
     title: 'Sun, Moon & Rising Sign Calculator - Free Big Three Reading',
-    canonical: 'https://example.com/tools/big-three/',
+    canonical: 'https://astrology-calculator-ebon.vercel.app/tools/big-three/',
     scripts: [
       '../../js/config.js',
       '../../js/core/math.js',
@@ -45,7 +45,7 @@ const PAGES = [
   {
     name: 'tools/love-calculator/index.html',
     title: 'Love Compatibility Calculator - Real Synastry, Not a Score',
-    canonical: 'https://example.com/tools/love-calculator/',
+    canonical: 'https://astrology-calculator-ebon.vercel.app/tools/love-calculator/',
     scripts: [
       '../../js/config.js',
       '../../js/core/math.js',
@@ -72,7 +72,7 @@ const PAGES = [
   {
     name: 'tools/astro-calendar/index.html',
     title: 'Astrology Calendar 2026 - Equinoxes, Moon Phases, Retrogrades',
-    canonical: 'https://example.com/tools/astro-calendar/',
+    canonical: 'https://astrology-calculator-ebon.vercel.app/tools/astro-calendar/',
     scripts: [
       '../../js/config.js',
       '../../js/core/math.js',
@@ -352,13 +352,13 @@ describe('index.html', () => {
       .map((m) => m[2]);
     assert.strictEqual(inSchema.length, 3, 'expected three tools in the ItemList');
     assert.deepStrictEqual(inSchema, [
-      'https://example.com/tools/big-three/',
-      'https://example.com/tools/love-calculator/',
-      'https://example.com/tools/astro-calendar/'
+      'https://astrology-calculator-ebon.vercel.app/tools/big-three/',
+      'https://astrology-calculator-ebon.vercel.app/tools/love-calculator/',
+      'https://astrology-calculator-ebon.vercel.app/tools/astro-calendar/'
     ]);
     /* And the page must agree with its own structured data. */
     for (const url of inSchema) {
-      assert.ok(hub.includes('href="' + url.replace('https://example.com/', '') + '"'),
+      assert.ok(hub.includes('href="' + url.replace('https://astrology-calculator-ebon.vercel.app/', '') + '"'),
         'the page does not link to ' + url);
     }
   });
