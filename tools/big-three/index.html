@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sun, Moon &amp; Rising Sign Calculator - Free Big Three Reading</title>
+<meta name="description" content="Free Sun, Moon and Rising sign calculator. Get your Big Three instantly, computed from real astronomy in your browser with your exact birth time and city. No sign-up.">
+<meta name="theme-color" content="#0a0f1e">
+<link rel="canonical" href="https://example.com/tools/big-three/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sun, Moon &amp; Rising Sign Calculator">
+<meta property="og:description" content="Your Big Three, calculated from real astronomy in your browser. Free, instant, no sign-up.">
+<meta name="twitter:card" content="summary">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://example.com/tools/big-three/#app",
+      "name": "Sun, Moon & Rising Sign Calculator",
+      "url": "https://example.com/tools/big-three/",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "Any modern web browser",
+      "browserRequirements": "Requires JavaScript. Works offline once loaded.",
+      "description": "Calculates the Sun, Moon and Rising signs of a birth chart, plus the aspects between them, the element and modality balance, and the dispositor of the Ascendant.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Sun, Moon and Rising sign",
+        "Exact degree within each sign",
+        "House positions and the Midheaven",
+        "Moon phase and illumination",
+        "Aspects between the three points",
+        "Element and modality balance",
+        "Dispositor of the Ascendant"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://example.com/tools/big-three/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is the Sun, Moon and Rising the same as a full birth chart?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not exactly. The Sun, Moon and Rising signs are the foundation of a birth chart. A full natal chart goes further: every planet, all twelve houses with their cusps, and the aspects between all of them. The Big Three tells you who you are, how you feel and how you come across. A full chart adds the mechanisms behind those three, which is why it needs a much longer interpretation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between the Sun, Moon and Rising signs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Sun sign is your core identity and sense of purpose. The Moon sign governs your emotional needs, instincts and private reactions. The Rising sign, also called the Ascendant, is the degree of the zodiac rising on the eastern horizon at your birth, and it describes the impression you make and the lens through which you meet new situations. The Sun changes about once a month, the Moon about every two and a half days, and the Rising sign about every two hours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate is this calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Sun and Moon positions are computed from published astronomical series in your browser, accurate to about one arcminute, which is far finer than the width of a sign. The Ascendant is accurate to a few arcseconds. The only inputs that can change the answer are the ones you type: a birth time that is off by four minutes can shift the Rising sign, and a birth city that is off by a few miles barely matters. Historical daylight saving is applied for the date you enter, not today's rules."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I do not know my exact birth time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tick the box and the calculator will use local noon, which gives you a usable Sun and Moon sign. It will then say plainly that the Rising sign cannot be determined, because the Ascendant moves roughly fifteen degrees an hour and two hours of uncertainty can span most of a sign. The Moon is barely affected: it needs about an hour and a half of error to change sign."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the calculator send my birth details anywhere?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Your date, time and place are used to calculate your chart inside your own browser and are never uploaded or saved to a server. The only network request this page makes is a search for the city name you type, sent to the Open-Meteo geocoding service in order to turn that name into coordinates and a timezone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does the Rising sign matter so much if it is the least certain?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because it is the only one of the three that depends on the clock rather than the calendar. The Sun and the Moon move slowly enough that a few minutes hardly matter, so almost everyone knows their Sun and Moon sign correctly. The Ascendant sweeps a full degree every four minutes, so it is the one most often quoted wrongly, by restaurants and apps that use noon for everyone. This calculator uses your real time and your real coordinates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this on a phone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The page is built mobile first, works down to a 360 pixel screen, has no horizontal scrolling, and the whole calculation runs on your device with no account and no app to install."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#calculator">Skip to the calculator</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../"><span aria-hidden="true">&#9790;</span> Astrology</a>
+    <nav class="site-nav" aria-label="Tools">
+      <a href="../../#tools">All tools</a>
+      <a href="../love-calculator/">Compatibility</a>
+      <a href="../astro-calendar/">Calendar</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section class="hero">
+      <span class="eyebrow">Free, no sign-up, runs in your browser</span>
+      <h1>Sun, Moon &amp; Rising Sign Calculator</h1>
+      <p class="lede">Find your Big Three: the three signs that explain your core identity, your
+        inner emotional life and the impression you make on people. Calculated from real
+        astronomy using your exact birth time and city.</p>
+      <ul class="hero-facts">
+        <li>No account, no email, no paywall</li>
+        <li>Birth details never leave your device</li>
+        <li>Historical daylight saving applied</li>
+      </ul>
+    </section>
+
+    <section class="calculator" id="calculator" aria-labelledby="form-title">
+      <h2 id="form-title">Enter your birth details</h2>
+      <form id="birth-form" novalidate>
+        <div class="form-grid">
+
+          <div class="field">
+            <label for="name">Your name <span class="visually-hidden">(optional)</span></label>
+            <input type="text" id="name" name="name" autocomplete="given-name"
+              placeholder="Optional, only used to greet you">
+            <span class="hint">Only used on this page. Not saved, not sent anywhere.</span>
+          </div>
+
+          <div class="field">
+            <label for="date">Date of birth</label>
+            <input type="date" id="date" name="date" required
+              min="1800-01-01" max="2200-12-31" aria-describedby="date-error">
+            <span class="error" id="date-error" role="alert"></span>
+          </div>
+
+          <div class="field field-full">
+            <label for="city">City of birth</label>
+            <div class="combo">
+              <input type="text" id="city" name="city" autocomplete="off" role="combobox"
+                aria-expanded="false" aria-autocomplete="list" aria-controls="city-list"
+                aria-describedby="city-hint city-error" required
+                placeholder="Start typing a city">
+              <ul class="combo-list" id="city-list" role="listbox" aria-label="Matching cities" hidden></ul>
+            </div>
+            <p class="combo-status" id="city-hint">Type at least two letters, then pick a city from the list.</p>
+            <span class="error" id="city-error" role="alert"></span>
+            <p id="chosen-place"></p>
+          </div>
+
+          <div class="field">
+            <label for="time">Time of birth</label>
+            <input type="time" id="time" name="time" required aria-describedby="time-error">
+            <span class="error" id="time-error" role="alert"></span>
+            <span class="hint">24-hour clock. Use the time on your birth certificate if you have it.</span>
+          </div>
+
+          <div class="field">
+            <span class="field-legend" id="time-unknown-label">Not sure?</span>
+            <label class="checkbox" for="time-unknown">
+              <input type="checkbox" id="time-unknown" name="time-unknown">
+              <span>I don't know my birth time</span>
+            </label>
+            <span class="hint">You'll still get your Sun and Moon sign, but the Rising sign
+              genuinely cannot be worked out without a time.</span>
+          </div>
+
+        </div>
+
+        <div class="form-foot">
+          <p class="form-note">By pressing the button you agree that this is a tool for
+            entertainment and a point of reflection, not a source of prediction.</p>
+          <button type="submit" class="btn" id="submit">Reveal my Big Three</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="reveal" id="reveal" hidden aria-live="polite">
+      <div class="reveal-card">
+        <span class="glyph" aria-hidden="true">&#9790;</span>
+        <span class="label">Calculating</span>
+      </div>
+      <p class="reveal-caption">Working out your chart&hellip;</p>
+    </section>
+
+    <section class="results" id="results" hidden aria-labelledby="results-title"></section>
+
+    <section class="explain" id="what">
+      <h2>What are the Sun, Moon and Rising signs?</h2>
+      <p>Astrology is built on one observation: at any moment, the sky is a picture, and the
+        picture changes slowly and predictably. Your birth chart is that picture, frozen. Three
+        points in it do most of the talking, and they answer three different questions about
+        you.</p>
+      <ul>
+        <li><strong>Sun sign</strong> &mdash; what you are consciously becoming, your sense of
+          identity and what you are here to do.</li>
+        <li><strong>Moon sign</strong> &mdash; what you need in order to feel safe, your
+          instincts and your private reactions when nobody is watching.</li>
+        <li><strong>Rising sign</strong> &mdash; the degree of the zodiac that was rising on the
+          eastern horizon as you were born, which is the doorway through which everything
+          else in the chart is experienced.</li>
+      </ul>
+      <p>Together they are called the Big Three. Read separately, each is a partial picture.
+        Read together they are close to a whole person, which is why the relationship between
+        the three matters as much as the three themselves.</p>
+    </section>
+
+    <section class="explain" id="how">
+      <h2>How this calculator works</h2>
+      <p>Type your date, your time and the city you were born in. Everything after that is
+        arithmetic performed on your own device.</p>
+      <ol>
+        <li>Your local time is converted to a single UTC instant, using the daylight saving
+          rules that were in force <em>in your city on your date of birth</em>, not today's.
+        </li>
+        <li>That instant becomes a Julian day, which is the unit astronomers use.</li>
+        <li>The Sun and Moon positions come from the standard published series for their
+          apparent geocentric ecliptic longitude, including nutation and aberration.</li>
+        <li>The local sidereal time is worked out from the Earth's rotation, and the
+          Ascendant is found as the degree of the zodiac crossing the eastern horizon at
+          your latitude and longitude.</li>
+        <li>Each of the three longitudes is turned into a sign, an exact degree within that
+          sign, a house and a set of traits, and the three are compared with each other to
+          find the aspects between them.</li>
+      </ol>
+      <p>No data leaves your browser. The only request the page makes is the city search,
+        which sends the name you typed to a geocoding service so it can find that city's
+        coordinates and timezone.</p>
+    </section>
+
+    <section class="explain" id="why">
+      <h2>Why your Big Three is worth knowing</h2>
+      <p>Most people know their Sun sign and almost nobody knows their Rising sign properly,
+        because getting it right needs an exact birth time and the right city. That gap is
+        worth closing: the Rising sign is often the piece that explains why a Sun sign
+        description read as half true, or why two people with the same Sun sign behave so
+        differently.</p>
+      <p>It is also the piece most often quoted badly. Plenty of apps and horoscope columns
+        will tell you your Rising sign from your date alone, or from noon on your birthday.
+        Both are guesses. The Ascendant moves about fifteen degrees an hour, so a two hour
+        error can move it by most of a sign, and a guess of that size is not a reading, it is
+        a coin toss dressed as one.</p>
+    </section>
+
+    <section class="explain" id="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details>
+          <summary>Is the Sun, Moon and Rising the same as a full birth chart?</summary>
+          <div class="faq-body">
+            <p>Not exactly. The Sun, Moon and Rising signs are the foundation of a birth
+            chart. A full natal chart goes further: every planet, all twelve houses with their
+            cusps, and the aspects between all of them.</p>
+            <p>The Big Three tells you who you are, how you feel and how you come across. A
+            full chart adds the mechanisms behind those three, which is why it needs a much
+            longer interpretation.</p>
+          </div>
+        </details>
+        <details>
+          <summary>What is the difference between the Sun, Moon and Rising signs?</summary>
+          <div class="faq-body">
+            <p>The Sun sign is your core identity and sense of purpose. The Moon sign governs
+            your emotional needs, instincts and private reactions. The Rising sign, also
+            called the Ascendant, is the degree of the zodiac rising on the eastern horizon
+            at your birth, and it describes the impression you make and the lens through which
+            you meet new situations.</p>
+            <p>The Sun changes about once a month, the Moon about every two and a half days,
+            and the Rising sign about every two hours.</p>
+          </div>
+        </details>
+        <details>
+          <summary>How accurate is this calculator?</summary>
+          <div class="faq-body">
+            <p>The Sun and Moon positions are computed from published astronomical series in
+            your browser, accurate to about one arcminute, which is far finer than the width
+            of a sign. The Ascendant is accurate to a few arcseconds.</p>
+            <p>The only inputs that can change the answer are the ones you type: a birth time
+            that is off by four minutes can shift the Rising sign, and a birth city that is
+            off by a few miles barely matters. Historical daylight saving is applied for the
+            date you enter, not today's rules.</p>
+          </div>
+        </details>
+        <details>
+          <summary>What if I do not know my exact birth time?</summary>
+          <div class="faq-body">
+            <p>Tick the box and the calculator will use local noon, which gives you a usable
+            Sun and Moon sign. It will then say plainly that the Rising sign cannot be
+            determined, because the Ascendant moves roughly fifteen degrees an hour and two
+            hours of uncertainty can span most of a sign.</p>
+            <p>The Moon is barely affected: it needs about an hour and a half of error to
+            change sign.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Does the calculator send my birth details anywhere?</summary>
+          <div class="faq-body">
+            <p>No. Your date, time and place are used to calculate your chart inside your own
+            browser and are never uploaded or saved to a server. The only network request
+            this page makes is a search for the city name you type, sent to the Open-Meteo
+            geocoding service in order to turn that name into coordinates and a
+            timezone.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Why does the Rising sign matter so much if it is the least certain?</summary>
+          <div class="faq-body">
+            <p>Because it is the only one of the three that depends on the clock rather than
+            the calendar. The Sun and the Moon move slowly enough that a few minutes hardly
+            matter, so almost everyone knows their Sun and Moon sign correctly.</p>
+            <p>The Ascendant sweeps a full degree every four minutes, so it is the one most
+            often quoted wrongly, by apps that use noon for everyone. This calculator uses
+            your real time and your real coordinates.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Can I use this on a phone?</summary>
+          <div class="faq-body">
+            <p>Yes. The page is built mobile first, works down to a 360 pixel screen, has no
+            horizontal scrolling, and the whole calculation runs on your device with no
+            account and no app to install.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="explain method" id="method">
+      <h2>Method and accuracy</h2>
+      <p>Positions are apparent geocentric positions of date, in the tropical zodiac, and are
+        referred to Jean Meeus, <em>Astronomical Algorithms</em>, 2nd edition:</p>
+      <ul>
+        <li>Julian day, chapter 7, switching to the Gregorian calendar in October 1582.</li>
+        <li>Greenwich sidereal time, chapter 12, plus the equation of the equinoxes.</li>
+        <li>Nutation in longitude and the true obliquity, chapter 22.</li>
+        <li>Solar position, chapter 25, with nutation and annual aberration.</li>
+        <li>Lunar position, chapter 47, a truncation of the ELP-2000/82 series.</li>
+        <li>Ascendant and Midheaven, derived from the horizon equation at the given
+          latitude and longitude.</li>
+      </ul>
+      <p>Expect roughly one arcminute for the Moon, a few arcseconds for the Sun, and a few
+        arcseconds for the Ascendant. A sign is only genuinely in doubt if a body sits within
+        a fraction of a degree of a sign boundary, and the calculator says so when that
+        happens.</p>
+      <h3>Deliberate omissions</h3>
+      <p>The Moon's ecliptic latitude is not computed, and the houses are whole sign rather
+        than Placidus. Both choices are explained in <code>SPEC.md</code>: latitude never
+        changes which sign the Moon occupies, and a Placidus table that cannot be checked
+        against published values would be a guess dressed up as a calculation. The Rising sign
+        itself does not depend on either, because the Ascendant is a function of sidereal
+        time, latitude, longitude and obliquity alone.</p>
+      <p>This is astrology offered as a language for thinking about yourself. Nothing here
+        predicts anything that has not already happened.</p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="../../#tools">All tools</a>
+      <a href="../love-calculator/">Love compatibility</a>
+      <a href="../astro-calendar/">Astro calendar</a>
+      <a href="#method">Method</a>
+    </nav>
+    <p>Sun, Moon &amp; Rising Sign Calculator. All calculation happens locally in your
+    browser. Astrology is a reflective tool, not a science.</p>
+  </div>
+</footer>
+
+<script src="../../js/config.js"></script>
+<script src="../../js/core/math.js"></script>
+<script src="../../js/core/time.js"></script>
+<script src="../../js/data/signs.js"></script>
+<script src="../../js/data/aspects.js"></script>
+<script src="../../js/data/interpretations.js"></script>
+<script src="../../js/core/ephemeris.js"></script>
+<script src="../../js/core/houses.js"></script>
+<script src="../../js/core/zodiac.js"></script>
+<script src="../../js/core/chart.js"></script>
+<script src="../../js/core/reading.js"></script>
+<script src="../../js/services/storage.js"></script>
+<script src="../../js/services/geocode.js"></script>
+<script src="../../js/ui/form.js"></script>
+<script src="../../js/ui/reveal.js"></script>
+<script src="../../js/ui/dom.js"></script>
+<script src="../../js/ui/results.js"></script>
+<script src="../../js/ui/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Everything on this site is meant to be searchable, so there is nothing to
+# disallow. The only thing excluded is the source of the calculator, which is
+# already the whole site and adds nothing a crawler needs.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml

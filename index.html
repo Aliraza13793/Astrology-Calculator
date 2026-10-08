@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Astrology Calculators - Big Three, Compatibility, Calendar</title>
+<meta name="description" content="Free astrology calculators that do the real astronomy: your Big Three, a two person compatibility comparison with no invented score, and an event calendar for any year.">
+<meta name="theme-color" content="#0a0f1e">
+<link rel="canonical" href="https://example.com/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://example.com/#website",
+      "name": "Astrology",
+      "url": "https://example.com/",
+      "description": "A small set of astrology calculators that compute real astronomical positions in the browser, and that show their working rather than handing back a score."
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://example.com/#tools",
+      "url": "https://example.com/",
+      "name": "Astrology calculators",
+      "isPartOf": { "@id": "https://example.com/#website" },
+      "about": [
+        { "@type": "Thing", "name": "Sun, Moon and Rising sign calculator" },
+        { "@type": "Thing", "name": "Love compatibility calculator" },
+        { "@type": "Thing", "name": "Astrology event calendar" }
+      ],
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": 3,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Sun, Moon & Rising Sign Calculator",
+            "url": "https://example.com/tools/big-three/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Love Compatibility Calculator",
+            "url": "https://example.com/tools/love-calculator/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Astrology Event Calendar",
+            "url": "https://example.com/tools/astro-calendar/"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://example.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the Big Three in astrology?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Big Three is the Sun sign, the Moon sign and the Rising sign, or Ascendant. The Sun is your conscious identity and sense of purpose. The Moon is what you need in order to feel safe. The Rising is the degree of the zodiac that was on the eastern horizon as you were born, and it describes the impression you make and the doorway through which you meet everything else in the chart."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is synastry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Synastry is the comparison of two birth charts with each other. The Sun, Moon, Venus, Mars and Ascendant of one chart are measured against the same five points of the other, and where the separation falls inside the orb of a known aspect, that is a real aspect between the two people. It is sometimes called a compatibility chart."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does retrograde mean in astrology?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A planet is retrograde when, seen from Earth, it appears to drift backwards against the zodiac. It happens when the Earth's own orbital motion overtakes the planet's, which happens to the inner planets often and to the outer planets rarely. Mercury retrogrades about three times a year, Mars about every two years, and Jupiter and Saturn about once a year."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are these calculators really accurate, or do they guess?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They compute real positions from published astronomical series, referred to Jean Meeus's Astronomical Algorithms and to the VSOP87 planetary theory, including light time, aberration and nutation. The Sun, Moon and planetary positions have been checked against NASA JPL Horizons, and the equinox, solstice, moon phase and retrograde dates this site publishes are checked against published values and JPL. Where something is deliberately left out, such as the Moon's ecliptic latitude, the page says so rather than quietly approximating."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do most astrology sites give a compatibility percentage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because a percentage is easy to display and hard to justify. Producing one means deciding how much a square should count against a trine, and that weighting is a choice rather than something found in the sky. A reader cannot tell a measurement from a preference once it is reduced to one number, so the compatibility tool here lists the actual aspects and their orbs instead."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do these calculators need my birth time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For the Rising sign, yes, and that is unavoidable: the Ascendant moves about fifteen degrees an hour, so two hours of uncertainty can span most of a sign. The Sun and Moon need only the date. Every tool here says plainly when a birth time is unknown rather than substituting noon and presenting the result as if it were real."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my birth data sent to a server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Every calculation happens inside your own browser and nothing you type is uploaded. The only network request any of these pages makes is a search for the city name you typed, sent to the Open-Meteo geocoding service, so it can find that city's coordinates and timezone. No name is ever stored."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#tools">Skip to the calculators</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./"><span aria-hidden="true">&#9790;</span> Astrology</a>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#tools">Calculators</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a href="#method">Method</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section class="hero">
+      <span class="eyebrow">Free, no sign-up, runs in your browser</span>
+      <h1>Astrology Calculators That Do The Astronomy</h1>
+      <p class="lede">Three tools, each computing real planetary positions rather than
+        looking them up in a table. They tell you when a result is uncertain, they
+        show their working, and they never hand you a score dressed up as a
+        measurement.</p>
+      <ul class="hero-facts">
+        <li>Positions checked against NASA JPL Horizons</li>
+        <li>Historical daylight saving applied</li>
+        <li>Nothing leaves your device</li>
+      </ul>
+    </section>
+
+    <section class="explain" id="tools">
+      <h2>The calculators</h2>
+      <div class="tool-grid">
+        <article class="tool-card">
+          <h3><a href="tools/big-three/">Sun, Moon &amp; Rising Sign Calculator</a></h3>
+          <p>Your Big Three, with the exact degree within each sign, the house each
+            point occupies, the Midheaven, the Moon phase and the aspects between
+            the three. The Rising sign is the one most sites get wrong, because it
+            is the only one that depends on the clock rather than the calendar, so
+            this one asks for your real birth time and says so when it is unknown.</p>
+          <p class="tool-note">Needs a date, a time and a city.</p>
+        </article>
+
+        <article class="tool-card">
+          <h3><a href="tools/love-calculator/">Love Compatibility Calculator</a></h3>
+          <p>Two birth charts compared point by point: the Sun, Moon, Venus, Mars
+            and Ascendant of each person against the same five of the other. Every
+            aspect that falls inside its orb is listed with how far off exact it
+            is. There is deliberately no percentage, because turning that list into
+            a single number would mean inventing a weighting and calling it a
+            result.</p>
+          <p class="tool-note">Needs two sets of birth details.</p>
+        </article>
+
+        <article class="tool-card">
+          <h3><a href="tools/astro-calendar/">Astrology Event Calendar</a></h3>
+          <p>A year of equinoxes, solstices, new and full Moons, Moon sign changes
+            and every planetary retrograde, for any year from 1800 to 2200. Each
+            one is solved from the astronomical series rather than read from a table
+            of averages, so the times are right for the year you ask about rather
+            than right on average, and they appear in your own timezone.</p>
+          <p class="tool-note">Just a year. Nothing else to type.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="explain" id="how">
+      <h2>How these calculators work</h2>
+      <p>Each page explains its own method in full. The short version is that
+        everything reduces to a small amount of arithmetic done on your own
+        device:</p>
+      <ol>
+        <li>Your local birth time is converted to a single UTC instant, using the
+          daylight saving rules that were in force <em>in your city on your date
+          of birth</em>, not today's. This is why a 1975 birth in the United
+          States resolves to standard time and a July one to daylight time.</li>
+        <li>That instant becomes a Julian day, the unit astronomers use.</li>
+        <li>The Sun and Moon come from the standard published series for their
+          apparent geocentric ecliptic longitude. The planets come from the VSOP87
+          theory. All of them are corrected for light time, annual aberration and
+          nutation, so what you get is the place you would actually see in the sky
+          rather than a geometric position.</li>
+        <li>Local sidereal time comes from the Earth's rotation, and the Ascendant
+          is the degree of the zodiac crossing the eastern horizon at your
+          latitude and longitude.</li>
+        <li>For the calendar, each event is a root of a continuous function of
+          time, found by bracketing and then bisecting. A retrograde is a root of a
+          longitude <em>rate</em>, not of a longitude, which is why the station dates
+          come out more accurately than the underlying planetary longitudes
+          suggest.</li>
+      </ol>
+      <p>No data leaves your browser. The only request any of these pages makes is
+        the city search, which sends the name you typed to a geocoding service so
+        it can find that city's coordinates and timezone.</p>
+    </section>
+
+    <section class="explain" id="why">
+      <h2>Why these show their working</h2>
+      <p>Astrology is a symbolic language, and most of what circulates under its
+        name is a lookup table presented with a straight face. A name-matching
+        "compatibility" result, a Rising sign guessed from a date with no time, a
+        calendar of average equinox dates: none of these are calculations, and none
+        of them can be wrong in a way you would notice, which is exactly why they
+        survive.</p>
+      <p>The alternative is to do the astronomy properly and then say plainly what
+        the answer does and does not license. That means publishing the accuracy
+        actually achieved, warning you when a planet sits within half a degree of a
+        sign boundary, telling you when a birth time is too uncertain to support a
+        Rising sign, and refusing to produce a single number for a relationship
+        when the honest answer is a list of aspects with orbs attached.</p>
+      <p>None of that makes astrology predictive. It makes the arithmetic checkable,
+        which is the only kind of honesty a calculator can offer.</p>
+    </section>
+
+    <section class="explain" id="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details>
+          <summary>What is the Big Three in astrology?</summary>
+          <div class="faq-body">
+            <p>The Big Three is the Sun sign, the Moon sign and the Rising sign, or
+            Ascendant.</p>
+            <p>The Sun is your conscious identity and sense of purpose. The Moon is
+            what you need in order to feel safe. The Rising is the degree of the
+            zodiac that was on the eastern horizon as you were born, and it describes
+            the impression you make and the doorway through which you meet
+            everything else in the chart.</p>
+          </div>
+        </details>
+        <details>
+          <summary>What is synastry?</summary>
+          <div class="faq-body">
+            <p>Synastry is the comparison of two birth charts with each other.</p>
+            <p>The Sun, Moon, Venus, Mars and Ascendant of one chart are measured
+            against the same five points of the other, and where the separation falls
+            inside the orb of a known aspect, that is a real aspect between the two
+            people. It is sometimes called a compatibility chart.</p>
+          </div>
+        </details>
+        <details>
+          <summary>What does retrograde mean in astrology?</summary>
+          <div class="faq-body">
+            <p>A planet is retrograde when, seen from Earth, it appears to drift
+            backwards against the zodiac. It happens when the Earth's own orbital
+            motion overtakes the planet's, which happens to the inner planets often
+            and to the outer planets rarely.</p>
+            <p>Mercury retrogrades about three times a year, Mars about every two
+            years, and Jupiter and Saturn about once a year.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Are these calculators really accurate, or do they guess?</summary>
+          <div class="faq-body">
+            <p>They compute real positions from published astronomical series,
+            referred to Jean Meeus's <em>Astronomical Algorithms</em> and to the
+            VSOP87 planetary theory, including light time, aberration and
+            nutation.</p>
+            <p>The Sun, Moon and planetary positions have been checked against NASA
+            JPL Horizons, and the equinox, solstice, moon phase and retrograde dates
+            this site publishes are checked against published values and JPL. Where
+            something is deliberately left out, such as the Moon's ecliptic
+            latitude, the page says so rather than quietly approximating.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Why do most astrology sites give a compatibility percentage?</summary>
+          <div class="faq-body">
+            <p>Because a percentage is easy to display and hard to justify.
+            Producing one means deciding how much a square should count against a
+            trine, and that weighting is a choice rather than something found in the
+            sky.</p>
+            <p>A reader cannot tell a measurement from a preference once it is
+            reduced to one number, so the compatibility tool here lists the actual
+            aspects and their orbs instead.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Do these calculators need my birth time?</summary>
+          <div class="faq-body">
+            <p>For the Rising sign, yes, and that is unavoidable: the Ascendant moves
+            about fifteen degrees an hour, so two hours of uncertainty can span most
+            of a sign. The Sun and Moon need only the date.</p>
+            <p>Every tool here says plainly when a birth time is unknown rather than
+            substituting noon and presenting the result as if it were real.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Is my birth data sent to a server?</summary>
+          <div class="faq-body">
+            <p>No. Every calculation happens inside your own browser and nothing you
+            type is uploaded.</p>
+            <p>The only network request any of these pages makes is a search for the
+            city name you typed, sent to the Open-Meteo geocoding service, so it can
+            find that city's coordinates and timezone. No name is ever stored.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="explain method" id="method">
+      <h2>Method and accuracy</h2>
+      <p>Every position is an apparent geocentric place of date in the tropical
+        zodiac. The series are those of Jean Meeus, <em>Astronomical Algorithms</em>,
+        2nd edition, and of VSOP87 (Bretagnon &amp; Francou, 1988):</p>
+      <ul>
+        <li>Julian day, Meeus chapter 7, switching to the Gregorian calendar in October 1582.</li>
+        <li>Greenwich apparent sidereal time, chapter 12, plus the equation of the equinoxes.</li>
+        <li>Nutation in longitude and true obliquity, chapter 22.</li>
+        <li>Solar position, chapter 25. Lunar position, chapter 47, a truncation of ELP-2000/82.</li>
+        <li>Planetary position from VSOP87 as tabulated in Appendix III, with light time, annual aberration and nutation.</li>
+        <li>Ascendant and Midheaven from the horizon equation at the given latitude and longitude.</li>
+      </ul>
+      <p>These were not taken on trust. The planetary positions were compared with
+        JPL Horizons for five bodies at two epochs; the seasonal and lunar event
+        times were compared with published values, and the retrograde station dates
+        with JPL. The tolerances those comparisons support are stated in the test
+        suite rather than in a footnote, and the suite is the thing that has to keep
+        passing.</p>
+      <h3>Deliberate omissions</h3>
+      <p>The Moon's ecliptic latitude is not computed, and the houses are whole sign
+        rather than Placidus. Both choices are explained in <code>SPEC.md</code>:
+        latitude never changes which sign the Moon occupies, and a Placidus table
+        that cannot be checked against published values would be a guess dressed up
+        as a calculation. The Rising sign itself depends on neither.</p>
+      <p>Astrology is offered here as a language for thinking about yourself and
+        about each other. Nothing on this site predicts anything that has not
+        already happened.</p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="tools/big-three/">Big Three</a>
+      <a href="tools/love-calculator/">Love compatibility</a>
+      <a href="tools/astro-calendar/">Event calendar</a>
+      <a href="#method">Method</a>
+    </nav>
+    <p>Astrology calculators. All calculation happens locally in your browser.
+    Astrology is a reflective tool, not a science.</p>
+  </div>
+</footer>
+
+</body>
+</html>

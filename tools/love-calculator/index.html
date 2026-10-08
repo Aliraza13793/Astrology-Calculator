@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Love Compatibility Calculator - Real Synastry, Not a Score</title>
+<meta name="description" content="Free love compatibility calculator based on real planetary positions. Compares two birth charts with Venus, Mars, the Sun and the Moon to show the actual aspects between you, with no score.">
+<meta name="theme-color" content="#0a0f1e">
+<link rel="canonical" href="https://example.com/tools/love-calculator/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://example.com/tools/love-calculator/#app",
+      "name": "Love Compatibility Calculator",
+      "url": "https://example.com/tools/love-calculator/",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "Any modern web browser",
+      "browserRequirements": "Requires JavaScript. Works offline once loaded.",
+      "description": "Compares two birth charts and reports the real astrological aspects between them, using Venus, Mars, the Sun, the Moon and the Ascendant of each person.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Two full birth charts, computed from real astronomy",
+        "Venus, Mars, Sun, Moon and Ascendant for both people",
+        "Every cross aspect inside its orb, listed with its actual orb",
+        "Written reading for each aspect",
+        "No compatibility score"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://example.com/tools/love-calculator/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does a love compatibility calculator work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It computes a full birth chart for each person from their date, time and city, then measures the angular separation between the Sun, Moon, Venus, Mars and Ascendant of one chart and the same five points of the other. Where a separation falls inside the orb of a known aspect, that is a real aspect between the two people, and it is reported with how far off exact it is. The comparison is called synastry."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is there no compatibility percentage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because a single number would have to weigh a square against a trine by some arbitrary factor, and any reader would take that number as a measurement while the weighting underneath it is a choice rather than a result. A list of the actual aspects, each with its orb, tells you more and claims less. Most sites that show a percentage are running a lookup table on two names."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need my birth time for this?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You need it for the Ascendant, which is the point that depends on the clock rather than the calendar. Without it you can still compare the Sun, Moon, Venus and Mars, which together carry most of the relationship reading, and this page says plainly which parts were left out rather than quietly guessing noon."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do the different planets mean in a comparison?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Sun is identity and purpose, the Moon is emotional need, Venus is how someone loves and what they find attractive, Mars is how they pursue what they want, and the Ascendant is the impression they make. Read as a pair, Venus to Mars describes attraction, Moon to Venus describes tenderness, and the friction aspects describe the arguments you can predict in advance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this calculation accurate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The Sun and Moon come from published astronomical series, and Venus and Mars from the VSOP87 planetary theory, all reduced to the apparent place of date with light time, aberration and nutation applied. The planetary positions agree with NASA JPL Horizons to better than one arcminute, which is far finer than the width of a sign. Each page states its own accuracy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this send our birth details anywhere?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Both charts are calculated inside your own browser and are never uploaded. The only network request the page makes is a search for the city names you type, sent to the Open-Meteo geocoding service so it can find those cities' coordinates and timezones."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#compare">Skip to the comparison</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../"><span aria-hidden="true">&#9790;</span> Astrology</a>
+    <nav class="site-nav" aria-label="Tools">
+      <a href="../../#tools">All tools</a>
+      <a href="../big-three/">Big Three</a>
+      <a href="../astro-calendar/">Calendar</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section class="hero">
+      <span class="eyebrow">Free, no sign-up, runs in your browser</span>
+      <h1>Love Compatibility Calculator</h1>
+      <p class="lede">Two birth charts, compared planet by planet. This reads the
+        real angular distance between your Suns, Moons, Venuses, Mars and
+        Ascendants and reports every aspect that falls inside its orb. There is
+        no percentage, because a percentage would be a number someone chose
+        rather than one the sky produced.</p>
+      <ul class="hero-facts">
+        <li>Real synastry from two full charts</li>
+        <li>Every aspect listed with its actual orb</li>
+        <li>Nothing uploaded, nothing stored</li>
+      </ul>
+    </section>
+
+    <section class="calculator" id="compare" aria-labelledby="form-title">
+      <h2 id="form-title">Enter both birth details</h2>
+      <form id="pair-form" novalidate>
+
+        <fieldset class="person">
+          <legend>First person</legend>
+          <div class="form-grid">
+            <div class="field">
+              <label for="a-name">Name <span class="visually-hidden">(optional)</span></label>
+              <input type="text" id="a-name" name="a-name" autocomplete="off"
+                placeholder="Optional, only used to greet you">
+            </div>
+            <div class="field">
+              <label for="a-date">Date of birth</label>
+              <input type="date" id="a-date" name="a-date" required
+                min="1800-01-01" max="2200-12-31" aria-describedby="a-date-error">
+              <span class="error" id="a-date-error" role="alert"></span>
+            </div>
+            <div class="field field-full">
+              <label for="a-city">City of birth</label>
+              <div class="combo">
+                <input type="text" id="a-city" name="a-city" autocomplete="off" role="combobox"
+                  aria-expanded="false" aria-autocomplete="list" aria-controls="a-city-list"
+                  aria-describedby="a-city-hint a-city-error" required
+                  placeholder="Start typing a city">
+                <ul class="combo-list" id="a-city-list" role="listbox" aria-label="Matching cities" hidden></ul>
+              </div>
+              <p class="combo-status" id="a-city-hint">Type at least two letters, then pick a city.</p>
+              <span class="error" id="a-city-error" role="alert"></span>
+              <p id="a-chosen-place"></p>
+            </div>
+            <div class="field">
+              <label for="a-time">Time of birth</label>
+              <input type="time" id="a-time" name="a-time" required aria-describedby="a-time-error">
+              <span class="error" id="a-time-error" role="alert"></span>
+            </div>
+            <div class="field">
+              <span class="field-legend">Not sure?</span>
+              <label class="checkbox" for="a-time-unknown">
+                <input type="checkbox" id="a-time-unknown" name="a-time-unknown">
+                <span>I don't know this birth time</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="person">
+          <legend>Second person</legend>
+          <div class="form-grid">
+            <div class="field">
+              <label for="b-name">Name <span class="visually-hidden">(optional)</span></label>
+              <input type="text" id="b-name" name="b-name" autocomplete="off"
+                placeholder="Optional, only used to greet you">
+            </div>
+            <div class="field">
+              <label for="b-date">Date of birth</label>
+              <input type="date" id="b-date" name="b-date" required
+                min="1800-01-01" max="2200-12-31" aria-describedby="b-date-error">
+              <span class="error" id="b-date-error" role="alert"></span>
+            </div>
+            <div class="field field-full">
+              <label for="b-city">City of birth</label>
+              <div class="combo">
+                <input type="text" id="b-city" name="b-city" autocomplete="off" role="combobox"
+                  aria-expanded="false" aria-autocomplete="list" aria-controls="b-city-list"
+                  aria-describedby="b-city-hint b-city-error" required
+                  placeholder="Start typing a city">
+                <ul class="combo-list" id="b-city-list" role="listbox" aria-label="Matching cities" hidden></ul>
+              </div>
+              <p class="combo-status" id="b-city-hint">Type at least two letters, then pick a city.</p>
+              <span class="error" id="b-city-error" role="alert"></span>
+              <p id="b-chosen-place"></p>
+            </div>
+            <div class="field">
+              <label for="b-time">Time of birth</label>
+              <input type="time" id="b-time" name="b-time" required aria-describedby="b-time-error">
+              <span class="error" id="b-time-error" role="alert"></span>
+            </div>
+            <div class="field">
+              <span class="field-legend">Not sure?</span>
+              <label class="checkbox" for="b-time-unknown">
+                <input type="checkbox" id="b-time-unknown" name="b-time-unknown">
+                <span>I don't know this birth time</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-foot">
+          <p class="form-note">By pressing the button you agree that this is a tool for
+            entertainment and a point of reflection, not a source of prediction.</p>
+          <button type="submit" class="btn" id="submit">Compare the two charts</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="results" id="results" hidden aria-labelledby="results-title"></section>
+
+    <section class="explain" id="how">
+      <h2>How the comparison is worked out</h2>
+      <ol>
+        <li>Each person's local birth time is converted to a single UTC instant
+          using the daylight saving rules in force <em>in their city on their
+          date</em>, not today's.</li>
+        <li>Each instant becomes a Julian day, and a full chart is calculated
+          from it: the Sun and Moon from the standard lunar and solar series,
+          Venus and Mars from the VSOP87 planetary theory, all reduced to the
+          apparent place of date including light time, aberration and
+          nutation.</li>
+        <li>The Ascendant is found from the horizon at that person's
+          coordinates, so it depends on their actual birth time.</li>
+        <li>Each of the five points of one chart is compared with each of the
+          five of the other. Where the angular separation falls inside the orb
+          of a known aspect, that is a real aspect between the two people.</li>
+        <li>Each aspect is reported with the degree it is off exact by, so you
+          can see for yourself which are the defining ones and which are
+          background.</li>
+      </ol>
+      <p>Nothing leaves your browser. The only request the page makes is the two
+        city searches.</p>
+    </section>
+
+    <section class="explain" id="scoring">
+      <h2>Why there is no percentage</h2>
+      <p>It is easy to produce a number between 0 and 100. To do it you have to
+        decide how much a square should count against a trine, whether a
+        conjunction between two Suns outweighs a square between two Mars, and
+        what to do about the pairs that aspect nothing at all. Every one of
+        those is a choice. None of them is a fact about the sky.</p>
+      <p>A reader who sees 78% has no way to tell a measured result from an
+        arbitrary weighting, and the number invites exactly the kind of
+        judgement astrology has no business making. So this page shows the
+        aspects themselves, with their orbs, and lets the shape of the
+        relationship speak for itself. A comparison with four tight aspects is
+        visibly different from one with four loose ones, without either being
+        converted into a total.</p>
+    </section>
+
+    <section class="explain" id="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details>
+          <summary>How does a love compatibility calculator work?</summary>
+          <div class="faq-body">
+            <p>It computes a full birth chart for each person from their date,
+            time and city, then measures the angular separation between the Sun,
+            Moon, Venus, Mars and Ascendant of one chart and the same five
+            points of the other.</p>
+            <p>Where a separation falls inside the orb of a known aspect, that is
+            a real aspect between the two people, and it is reported with how far
+            off exact it is. The comparison is called synastry.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Why is there no compatibility percentage?</summary>
+          <div class="faq-body">
+            <p>Because a single number would have to weigh a square against a
+            trine by some arbitrary factor, and any reader would take that number
+            as a measurement while the weighting underneath it is a choice rather
+            than a result.</p>
+            <p>A list of the actual aspects, each with its orb, tells you more and
+            claims less. Most sites that show a percentage are running a lookup
+            table on two names.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Do I need my birth time for this?</summary>
+          <div class="faq-body">
+            <p>You need it for the Ascendant, which is the point that depends on
+            the clock rather than the calendar.</p>
+            <p>Without it you can still compare the Sun, Moon, Venus and Mars,
+            which together carry most of the relationship reading, and this page
+            says plainly which parts were left out rather than quietly guessing
+            noon.</p>
+          </div>
+        </details>
+        <details>
+          <summary>What do the different planets mean in a comparison?</summary>
+          <div class="faq-body">
+            <p>The Sun is identity and purpose, the Moon is emotional need, Venus
+            is how someone loves and what they find attractive, Mars is how they
+            pursue what they want, and the Ascendant is the impression they
+            make.</p>
+            <p>Read as a pair, Venus to Mars describes attraction, Moon to Venus
+            describes tenderness, and the friction aspects describe the arguments
+            you can predict in advance.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Is this calculation accurate?</summary>
+          <div class="faq-body">
+            <p>Yes. The Sun and Moon come from published astronomical series, and
+            Venus and Mars from the VSOP87 planetary theory, all reduced to the
+            apparent place of date with light time, aberration and nutation
+            applied.</p>
+            <p>The planetary positions agree with NASA JPL Horizons to better than
+            one arcminute, which is far finer than the width of a sign. Each page
+            states its own accuracy.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Does this send our birth details anywhere?</summary>
+          <div class="faq-body">
+            <p>No. Both charts are calculated inside your own browser and are never
+            uploaded.</p>
+            <p>The only network request the page makes is a search for the city
+            names you type, sent to the Open-Meteo geocoding service so it can
+            find those cities' coordinates and timezones.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="explain method" id="method">
+      <h2>Method and accuracy</h2>
+      <p>Positions are apparent geocentric places of date in the tropical zodiac,
+        referred to Jean Meeus, <em>Astronomical Algorithms</em>, 2nd edition, and
+        to VSOP87 (Bretagnon &amp; Francou, 1988):</p>
+      <ul>
+        <li>Julian day, chapter 7, switching to the Gregorian calendar in October 1582.</li>
+        <li>Greenwich apparent sidereal time, chapter 12, plus the equation of the equinoxes.</li>
+        <li>Nutation in longitude and true obliquity, chapter 22.</li>
+        <li>Solar position, chapter 25; lunar position, chapter 47.</li>
+        <li>Venus and Mars from the VSOP87 planetary theory, as tabulated in Appendix III.</li>
+        <li>Light time, annual aberration and nutation applied to reach the apparent place.</li>
+        <li>Ascendant and Midheaven from the horizon at the given coordinates.</li>
+      </ul>
+      <p>The planetary series were checked against NASA JPL Horizons for five
+        bodies at two epochs and agree to within about forty arcseconds, and the
+        retrograde station dates they produce match JPL to within half an hour.
+        A sign is thirty degrees wide, so this is far finer than it needs to be;
+        the tool would not be this accurate if a shorter series would do.</p>
+      <p>Houses are whole sign, not Placidus, for the reason given in
+        <code>SPEC.md</code>. Astrology is offered here as a language for thinking
+        about a relationship. Nothing on this page predicts anything that has not
+        already happened.</p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="../../#tools">All tools</a>
+      <a href="../big-three/">Big Three calculator</a>
+      <a href="../astro-calendar/">Astro calendar</a>
+      <a href="#scoring">Why no score</a>
+    </nav>
+    <p>Love compatibility calculator. All calculation happens locally in your
+    browser. Astrology is a reflective tool, not a science.</p>
+  </div>
+</footer>
+
+<script src="../../js/config.js"></script>
+<script src="../../js/core/math.js"></script>
+<script src="../../js/core/time.js"></script>
+<script src="../../js/data/signs.js"></script>
+<script src="../../js/data/aspects.js"></script>
+<script src="../../js/data/interpretations.js"></script>
+<script src="../../js/data/synastry.js"></script>
+<script src="../../js/core/ephemeris.js"></script>
+<script src="../../js/core/vsop87d.js"></script>
+<script src="../../js/core/planets.js"></script>
+<script src="../../js/core/houses.js"></script>
+<script src="../../js/core/zodiac.js"></script>
+<script src="../../js/core/chart.js"></script>
+<script src="../../js/core/reading.js"></script>
+<script src="../../js/core/synastry.js"></script>
+<script src="../../js/services/storage.js"></script>
+<script src="../../js/services/geocode.js"></script>
+<script src="../../js/ui/form.js"></script>
+<script src="../../js/ui/dom.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

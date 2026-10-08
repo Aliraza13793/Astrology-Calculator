@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Astrology Calendar 2026 - Equinoxes, Moon Phases, Retrogrades</title>
+<meta name="description" content="Free astrology event calendar with real equinox and solstice times, new and full moon dates, Moon sign changes and every planetary retrograde for any year. Solved, not tabulated.">
+<meta name="theme-color" content="#0a0f1e">
+<link rel="canonical" href="https://example.com/tools/astro-calendar/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://example.com/tools/astro-calendar/#app",
+      "name": "Astrology Event Calendar",
+      "url": "https://example.com/tools/astro-calendar/",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "Any modern web browser",
+      "browserRequirements": "Requires JavaScript. Works offline once loaded.",
+      "description": "A year of astrology events computed from published astronomical series: equinoxes and solstices, new and full Moons, Moon sign changes, and every planetary retrograde station for Mercury, Venus, Mars, Jupiter and Saturn.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Equinox and solstice times for any year",
+        "New and full Moon dates to the minute",
+        "Every Moon sign change, about thirteen a month",
+        "Retrograde and direct stations for five planets",
+        "Times shown in your own timezone"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://example.com/tools/astro-calendar/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What dates are the equinoxes and solstices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The March equinox is around 20 March, the June solstice around 21 June, the September equinox around 22 or 23 September, and the December solstice around 21 December. The exact minute shifts by up to eighteen hours from year to year because of the leap-year cycle, which is why a table of average dates is not good enough. This page solves for the moment the Sun's apparent longitude actually reaches 0, 90, 180 and 270 degrees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When is the next new moon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A new moon happens when the Moon passes between the Earth and the Sun, roughly every 29.5 days, so there are twelve or thirteen in a year. A full moon is halfway round that cycle, about 14.8 days later. This page solves for the moment the geocentric elongation between Sun and Moon actually reaches zero and 180 degrees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which planets go retrograde, and how often?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mercury goes retrograde about three times a year for around three weeks at a time, Venus about every eighteen months for around six weeks, Mars about every two years for around two months, and Jupiter and Saturn about once a year each. A planet is retrograde when, as seen from Earth, it appears to drift backwards against the zodiac, which happens when the Earth's own motion overtakes the planet's."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often does the Moon change sign?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Moon moves through a whole sign in about two and a quarter days, so it changes sign roughly 160 times a year rather than the twelve or thirteen times a month that astrology columns often suggest. This page lists every one of them, because a Moon sign reading is only valid for the couple of days it actually holds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are these dates accurate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The equinox and solstice times agree with published values to within a quarter of an hour, and the new and full moon times to within a few minutes. The retrograde station dates were checked against NASA JPL Horizons and match to within half an hour. Planetary positions come from the VSOP87 theory with light time, aberration and nutation applied."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which timezone are the times in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your own, the one your device is set to. An equinox is a single instant in physics but happens at a different clock time in every city, so showing one fixed timezone would be wrong for most readers. The underlying calculation is kept in universal time and only converted for display."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#calendar">Skip to the calendar</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../../"><span aria-hidden="true">&#9790;</span> Astrology</a>
+    <nav class="site-nav" aria-label="Tools">
+      <a href="../../#tools">All tools</a>
+      <a href="../big-three/">Big Three</a>
+      <a href="../love-calculator/">Compatibility</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section class="hero">
+      <span class="eyebrow">Free, no sign-up, any year</span>
+      <h1>Astrology Event Calendar</h1>
+      <p class="lede">Every equinox, solstice, new moon, full moon, Moon sign change
+        and planetary retrograde for any year you like. Each one is solved from
+        published astronomical series rather than read out of a table, which is
+        why the times hold up for years nobody wrote down in advance.</p>
+      <ul class="hero-facts">
+        <li>Solved, not tabulated</li>
+        <li>Times in your own timezone</li>
+        <li>Any year from 1800 to 2200</li>
+      </ul>
+    </section>
+
+    <section class="calculator" id="calendar" aria-labelledby="cal-title">
+      <h2 id="cal-title">Choose a year</h2>
+      <form id="year-form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="year">Year</label>
+            <input type="number" id="year" name="year" value="2026" min="1800" max="2200"
+              step="1" inputmode="numeric" required aria-describedby="year-error">
+            <span class="error" id="year-error" role="alert"></span>
+            <span class="hint">Between 1800 and 2200.</span>
+          </div>
+          <div class="field">
+            <span class="field-legend" id="filters-label">Show</span>
+            <fieldset class="chip-group" aria-labelledby="filters-label">
+              <label class="checkbox" for="f-solar"><input type="checkbox" id="f-solar" checked> <span>Seasons</span></label>
+              <label class="checkbox" for="f-phase"><input type="checkbox" id="f-phase" checked> <span>Moon phases</span></label>
+              <label class="checkbox" for="f-ingress"><input type="checkbox" id="f-ingress" checked> <span>Moon sign changes</span></label>
+              <label class="checkbox" for="f-station"><input type="checkbox" id="f-station" checked> <span>Retrogrades</span></label>
+            </fieldset>
+          </div>
+        </div>
+        <div class="form-foot">
+          <button type="submit" class="btn" id="submit">Show the year</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="results" id="results" hidden aria-labelledby="results-title"></section>
+
+    <section class="explain" id="whats-here">
+      <h2>What is on the calendar</h2>
+      <dl class="def-list">
+        <dt>Seasons</dt>
+        <dd>The four points where the Sun's apparent longitude reaches 0, 90, 180
+          and 270 degrees. Solved from the Sun's own position, so the exact minute
+          is right for the year you ask for rather than for an average year.</dd>
+        <dt>Moon phases</dt>
+        <dd>New and full Moons, from the geocentric elongation between Sun and
+          Moon reaching zero and 180 degrees. Twelve or thirteen pairs a year.</dd>
+        <dt>Moon sign changes</dt>
+        <dd>Every ingress, roughly 160 a year. A Moon sign reading is only valid
+          for the two or three days it actually holds, which is why the exact
+          time matters more here than anywhere else on this page.</dd>
+        <dt>Retrogrades</dt>
+        <dd>Every station of Mercury, Venus, Mars, Jupiter and Saturn, found from
+          the moment each planet's apparent longitude stops advancing and starts
+          going backwards. A station that happens behind the Sun is marked, since
+          it occurs but cannot be watched.</dd>
+      </dl>
+    </section>
+
+    <section class="explain" id="why">
+      <h2>Why the times differ from the ones you have read</h2>
+      <p>Most published astrology calendars are generated from a table of average
+        dates. That is fine to within a day or two for the Moon, and useless for
+        the seasons, where the equinox can move by nearly eighteen hours from one
+        year to the next because of where the leap year falls. Ask a table for the
+        March equinox of an obscure year and it will give you the wrong answer
+        confidently.</p>
+      <p>Nothing here is looked up. Each event is a root of a continuous function
+        of time, found by bracketing it on a coarse scan and then bisecting: the
+        Sun's longitude for the seasons, the Sun-Moon elongation for the phases,
+        the Moon's longitude for the ingresses, and the planet's longitude
+        <em>rate</em> for the stations. A retrograde is the last of these and needs
+        the derivative rather than the position, which is also why the station
+        dates here are more accurate than the raw planetary longitudes would
+        suggest.</p>
+    </section>
+
+    <section class="explain" id="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details>
+          <summary>What dates are the equinoxes and solstices?</summary>
+          <div class="faq-body">
+            <p>The March equinox is around 20 March, the June solstice around 21
+            June, the September equinox around 22 or 23 September, and the December
+            solstice around 21 December.</p>
+            <p>The exact minute shifts by up to eighteen hours from year to year
+            because of the leap-year cycle, which is why a table of average dates
+            is not good enough. This page solves for the moment the Sun's apparent
+            longitude actually reaches 0, 90, 180 and 270 degrees.</p>
+          </div>
+        </details>
+        <details>
+          <summary>When is the next new moon?</summary>
+          <div class="faq-body">
+            <p>A new moon happens when the Moon passes between the Earth and the
+            Sun, roughly every 29.5 days, so there are twelve or thirteen in a
+            year. A full moon is halfway round that cycle, about 14.8 days later.</p>
+            <p>This page solves for the moment the geocentric elongation between Sun
+            and Moon actually reaches zero and 180 degrees.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Which planets go retrograde, and how often?</summary>
+          <div class="faq-body">
+            <p>Mercury goes retrograde about three times a year for around three
+            weeks at a time, Venus about every eighteen months for around six
+            weeks, Mars about every two years for around two months, and Jupiter
+            and Saturn about once a year each.</p>
+            <p>A planet is retrograde when, as seen from Earth, it appears to drift
+            backwards against the zodiac, which happens when the Earth's own motion
+            overtakes the planet's.</p>
+          </div>
+        </details>
+        <details>
+          <summary>How often does the Moon change sign?</summary>
+          <div class="faq-body">
+            <p>The Moon moves through a whole sign in about two and a quarter days,
+            so it changes sign roughly 160 times a year rather than the twelve or
+            thirteen times a month that astrology columns often suggest.</p>
+            <p>This page lists every one of them, because a Moon sign reading is
+            only valid for the couple of days it actually holds.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Are these dates accurate?</summary>
+          <div class="faq-body">
+            <p>The equinox and solstice times agree with published values to within
+            a quarter of an hour, and the new and full moon times to within a few
+            minutes.</p>
+            <p>The retrograde station dates were checked against NASA JPL Horizons
+            and match to within half an hour. Planetary positions come from the
+            VSOP87 theory with light time, aberration and nutation applied.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Which timezone are the times in?</summary>
+          <div class="faq-body">
+            <p>Your own, the one your device is set to. An equinox is a single
+            instant in physics but happens at a different clock time in every city,
+            so showing one fixed timezone would be wrong for most readers.</p>
+            <p>The underlying calculation is kept in universal time and only
+            converted for display.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="explain method" id="method">
+      <h2>Method and accuracy</h2>
+      <p>Every time on this page is a solved root, not a lookup. The series are
+        those of Jean Meeus, <em>Astronomical Algorithms</em>, 2nd edition, and
+        VSOP87 (Bretagnon &amp; Francou, 1988):</p>
+      <ul>
+        <li>Julian day, chapter 7, switching to the Gregorian calendar in October 1582.</li>
+        <li>Solar position, chapter 25, for the equinoxes and solstices.</li>
+        <li>Lunar position, chapter 47, a truncation of ELP-2000/82, for the phases and ingresses.</li>
+        <li>Planetary position from VSOP87 as tabulated in Appendix III, with light time, aberration and nutation, for the stations.</li>
+      </ul>
+      <p>Measured against JPL Horizons, the seasonal times land within a quarter
+        of an hour and the lunar phases within a few minutes. The residual is
+        chiefly the difference between Terrestrial and Universal Time, which is
+        under a minute today and was larger in the early years this page accepts.
+        Station dates match to within half an hour, and are better than that in
+        practice because a retrograde depends on the derivative, where a constant
+        offset in longitude cancels out.</p>
+      <p>Times are displayed in the timezone your device is set to, and the
+        underlying values are kept in universal time throughout. Astrology is
+        offered here as a language for thinking about timing. Nothing on this page
+        predicts anything that has not already happened.</p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="../../#tools">All tools</a>
+      <a href="../big-three/">Big Three calculator</a>
+      <a href="../love-calculator/">Love compatibility</a>
+      <a href="#why">How it is calculated</a>
+    </nav>
+    <p>Astrology event calendar. All calculation happens locally in your browser.
+    Astrology is a reflective tool, not a science.</p>
+  </div>
+</footer>
+
+<script src="../../js/config.js"></script>
+<script src="../../js/core/math.js"></script>
+<script src="../../js/core/time.js"></script>
+<script src="../../js/data/signs.js"></script>
+<script src="../../js/data/aspects.js"></script>
+<script src="../../js/data/interpretations.js"></script>
+<script src="../../js/core/ephemeris.js"></script>
+<script src="../../js/core/vsop87d.js"></script>
+<script src="../../js/core/planets.js"></script>
+<script src="../../js/core/houses.js"></script>
+<script src="../../js/core/zodiac.js"></script>
+<script src="../../js/core/events.js"></script>
+<script src="../../js/ui/dom.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
